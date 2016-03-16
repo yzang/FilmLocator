@@ -148,7 +148,7 @@ function addMarkers(map,json){
         // Dynamic loading markers and data from JSON
         google.maps.event.addListener(map, 'idle', function() {
             var visibleArray = [];
-            for (var i = 0; i < json.data.length; i++) {
+            for (var i = 0; i < json.length; i++) {
                 if (map.getBounds().contains(newMarkers[i].getPosition())) {
                     visibleArray.push(newMarkers[i]);
                     $.each(visibleArray, function (i) {
