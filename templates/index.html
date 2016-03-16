@@ -1,10 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:700,400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.css" type="text/css">
+    <title>Film Locator</title>
+
 </head>
-<body>
+
+<body id="page-top" class="fullscreen-map has-map">
+
+<div id="page-wrapper">
+    <header class="animate" id="header">
+        <div class="container">
+            <div class="header-inner">
+                <nav class="main">
+                    <div class="brand">
+                        <a href="index-map-fullscreen.html">
+                            <img src="/static/assets/img/logo.png" alt="brand">
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="submit-container">
+                <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse"
+                   aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
+                <a class="submit-button"><i class="rotate fa fa-refresh" style="font-size: 20px;color:white"></i></a>
+                <a class="submit-button"><i class="fa fa-check" style="font-size: 20px;color:white"></i></a>
+            </div>
+        </div>
+    </header>
+    <!--end Header-->
+    <div class="page-content">
+        <div class="search collapse in" id="search-collapse">
+            <div class="container">
+                <form class="main-search" role="form" method="post" action="#">
+                    <!-- first row filter -->
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="type">Title</label>
+                                <select class="select2-select">
+                                    <option value="ALL">ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label>Release Year</label>
+                                <div class="ui-slider" id="price-slider" data-step="1" data-value-min="1900"
+                                     data-value-max="2020" data-value-type="number">
+                                    <div class="values clearfix">
+                                        <input class="value-min" name="value-min[]" readonly>
+                                        <input class="value-max" name="value-max[]" readonly>
+                                    </div>
+                                    <div class="element"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <div class="input-group location">
+                                    <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default animate" type="button"><i
+                                                class="fa fa-map-marker geolocation" data-toggle="tooltip"
+                                                data-placement="bottom" title="Find my position"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="type">Production Cmpany</label>
+                                <select class="select2-select">
+                                    <option value="ALL">ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- first row filter end -->
+                    <!-- second row filter -->
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="type">Distributor</label>
+                                <select class="select2-select">
+                                    <option value="ALL">ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="type">Director</label>
+                                <select class="select2-select">
+                                    <option value="ALL">ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="type">Writer</label>
+                                <select class="select2-select">
+                                    <option value="ALL">ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="type">Actors</label>
+                                <select class="select2-select">
+                                    <option value="ALL">ALL</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- second row filter end -->
+                </form>
+                <!-- search form end -->
+            </div>
+            <!-- .container end -->
+        </div>
+        <!-- .search end -->
+
+        <!-- google map layer -->
+        <div class="map-wrapper grid">
+            <div class="map" id="map"></div>
+        </div>
+        <!-- google map layer end -->
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/static/assets/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="/static/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
