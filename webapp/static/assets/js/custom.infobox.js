@@ -8,14 +8,14 @@ function drawInfobox(json, i){
     var writer='';
     var actors='';
 
-    if( json.data[i].title )                { title=json.data[i].title }
-    if( json.data[i].release )              { release=json.data[i].release }
-    if( json.data[i].location )             { location=json.data[i].location }
-    if( json.data[i].company )              { company=json.data[i].company }
-    if( json.data[i].distributor )          { distributor=json.data[i].distributor }
-    if( json.data[i].director )             { director=json.data[i].director }
-    if( json.data[i].writer )               { writer=json.data[i].writer }
-    if( json.data[i].actors )               { actors=json.data[i].actors }
+    if( json[i].title )                { title=json[i].title }
+    if( json[i].release )              { release=json[i].release }
+    if( json[i].location )             { location=json[i].location }
+    if( json[i].company )              { company=json[i].company }
+    if( json[i].distributor )          { distributor=json[i].distributor }
+    if( json[i].director )             { director=json[i].director }
+    if( json[i].writer )               { writer=json[i].writer }
+    if( json[i].actors )               { actors=json[i].actors }
 
     var ibContent =
     '<div class="infobox">' +
