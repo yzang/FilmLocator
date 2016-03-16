@@ -224,7 +224,7 @@ $(document).ready(function ($) {
     // build the map -------------------------------------------------------------
     var _latitude = 37.77493;
     var _longitude = -122.419416;
-    var jsonPath = '/static/assets/json/items.json';
+    var jsonPath = '/static/assets/json/films.json';
     var center = new google.maps.LatLng(_latitude, _longitude);
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
