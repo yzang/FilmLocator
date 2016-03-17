@@ -13,7 +13,6 @@ class FilterForm(forms.ModelForm):
 
     def get_filter(self):
         filters={}
-	print self.data
         if self.data.get('title'):
             filters['title']=self.data['title']
         if self.data.get('start_year'):
@@ -32,5 +31,4 @@ class FilterForm(forms.ModelForm):
             filters['writer']=self.data['writer']
         if self.data.get('actors'):
             filters['actors__name']=self.data['actors']
-	print filters
         return filters

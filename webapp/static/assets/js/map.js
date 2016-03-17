@@ -168,10 +168,7 @@ function addMarkers(map, json) {
     ];
 
     var markerCluster = new MarkerClusterer(map, newMarkers, {styles: clusterStyles, maxZoom: 19});
-
     google.maps.event.addListener(map, 'idle', function () {
-
-        var visibleArray = [];
         console.log("idle event triggered")
         for (var i = 0; i < json.length; i++) {
             if (map.getBounds().contains(newMarkers[i].getPosition())) {
@@ -214,6 +211,20 @@ function drawMap(map,param) {
     spinner.spin(spinTarget)
     $.getJSON('/film/search', param)
         .done(function (json) {
+            var _latitude = 37.77493;
+            var _longitude = -122.419416;
+            var center = new google.maps.LatLng(_latitude, _longitude);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: center,
+                disableDefaultUI: false,
+                panControl: true,
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE,
+                    position: google.maps.ControlPosition.RIGHT_TOP
+                }
+            });
             addMarkers(map, json);
         })
         .fail(function (jqxhr, textStatus, error) {
@@ -239,52 +250,18 @@ $(document).ready(function ($) {
     });
 
     // build the map -------------------------------------------------------------
-    var _latitude = 37.77493;
-    var _longitude = -122.419416;
-    var center = new google.maps.LatLng(_latitude, _longitude);
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: center,
-        disableDefaultUI: false,
-        panControl: true,
-        zoomControl: true,
-        zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.LARGE,
-            position: google.maps.ControlPosition.RIGHT_TOP
-        }
-    });
+    drawMap({})
+
     // Load JSON data and create Google Maps
-    drawMap(map,{})
+
 
     $('#form-submit').click(function () {
         var param = $('#search-form').serialize()
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: center,
-            disableDefaultUI: false,
-            panControl: true,
-            zoomControl: true,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.LARGE,
-                position: google.maps.ControlPosition.RIGHT_TOP
-            }
-        });
-        drawMap(map,param)
+        drawMap(param)
     })
 
     $('#form-refresh').click(function () {
         $(".select2-select").select2("val","")
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: center,
-            disableDefaultUI: false,
-            panControl: true,
-            zoomControl: true,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.LARGE,
-                position: google.maps.ControlPosition.RIGHT_TOP
-            }
-        });
         drawMap(map,{})
     })
 });

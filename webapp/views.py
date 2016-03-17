@@ -14,7 +14,6 @@ def home(request):
 def search_film(request):
     response = '{}'
     if request.method == 'GET':
-        print 'get request'
         form = FilterForm(request.GET)
         try:
             filters = form.get_filter()
