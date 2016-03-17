@@ -2,6 +2,31 @@
  * Created by Yiming on 3/15/2016.
  */
 var transitionDelay = 0.7
+var spinOpts = {
+        lines: 17 // The number of lines to draw
+        , length: 13 // The length of each line
+        , width: 3 // The line thickness
+        , radius: 20 // The radius of the inner circle
+        , scale: 0.75 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1.5 // Rounds per second
+        , trail: 56 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+var spinner = new Spinner(spinOpts)
+var spinTarget=document.getElementById('map-wrapper')
+
 function animateElement(parentElement) {
     $(parentElement).addClass('idle');
     setTimeout(function () {
@@ -29,7 +54,6 @@ function addMarkers(map, json) {
 
     for (var i = 0; i < json.length; i++) {
         // Google map marker content
-
         var markerContent = document.createElement('DIV');
         markerContent.innerHTML =
             '<div class="map-marker">' +
@@ -106,7 +130,6 @@ function addMarkers(map, json) {
     }
 
     // Close infobox after click on map
-
     google.maps.event.addListener(map, 'click', function (event) {
         if (activeMarker != false && lastClicked != false) {
             if (markerClicked == 1) {
@@ -146,46 +169,23 @@ function addMarkers(map, json) {
 
     var markerCluster = new MarkerClusterer(map, newMarkers, {styles: clusterStyles, maxZoom: 19});
 
-    // Dynamic loading markers and data from JSON
-/**
     google.maps.event.addListener(map, 'idle', function () {
+
         var visibleArray = [];
+        console.log("idle event triggered")
         for (var i = 0; i < json.length; i++) {
             if (map.getBounds().contains(newMarkers[i].getPosition())) {
-                visibleArray.push(newMarkers[i]);
-                $.each(visibleArray, function (i) {
-                    setTimeout(function () {
-                        if (map.getBounds().contains(visibleArray[i].getPosition())) {
-                            if (!visibleArray[i].content.className) {
-                                visibleArray[i].setMap(map);
-                                visibleArray[i].content.className += 'bounce-animation marker-loaded';
-                                markerCluster.repaint();
-                            }
-                        }
-                    }, i * 50);
-                });
-            } else {
-                newMarkers[i].content.className = '';
-                newMarkers[i].setMap(null);
-            }
-        }
-   });
-**/
-  google.maps.event.addListener(map,'idle', function () {
-        var visibleArray = [];
-	console.log("idle event triggered")
-        for (var i = 0; i < json.length; i++) {
-            if (map.getBounds().contains(newMarkers[i].getPosition())) {
-		if (!newMarkers[i].content.className) {
-                            newMarkers[i].setMap(map);
-                            newMarkers[i].content.className += 'bounce-animation marker-loaded';
+                if (!newMarkers[i].content.className) {
+                    newMarkers[i].setMap(map);
+                    newMarkers[i].content.className += 'bounce-animation marker-loaded';
                 }
             } else {
                 newMarkers[i].content.className = '';
                 newMarkers[i].setMap(null);
             }
         }
-	markerCluster.repaint()
+        markerCluster.repaint()
+        spinner.stop()
     });
 
 
@@ -223,6 +223,18 @@ function addMarkers(map, json) {
     });
 }
 
+
+function drawMap(map,param) {
+    spinner.spin(spinTarget)
+    $.getJSON('/film/search', param)
+        .done(function (json) {
+            addMarkers(map, json);
+        })
+        .fail(function (jqxhr, textStatus, error) {
+            console.log(error);
+        })
+}
+
 $(document).ready(function ($) {
     // Resize the map dynamically -----------------------------------------------------------------------------
     if ($(window).width() < 768) {
@@ -243,7 +255,6 @@ $(document).ready(function ($) {
     // build the map -------------------------------------------------------------
     var _latitude = 37.77493;
     var _longitude = -122.419416;
-    var jsonPath = '/static/assets/json/films.json';
     var center = new google.maps.LatLng(_latitude, _longitude);
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
@@ -257,17 +268,10 @@ $(document).ready(function ($) {
         }
     });
     // Load JSON data and create Google Maps
-
-    $.getJSON('/film/search',{})
-        .done(function (json) {
-            addMarkers(map, json);
-        })
-        .fail(function (jqxhr, textStatus, error) {
-            console.log(error);
-        })
+    drawMap(map,{})
 
     $('#form-submit').click(function () {
-        var param=$('#search-form').serialize()
+        var param = $('#search-form').serialize()
         console.log(param)
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
@@ -280,13 +284,7 @@ $(document).ready(function ($) {
                 position: google.maps.ControlPosition.RIGHT_TOP
             }
         });
-        $.getJSON('/film/search',param)
-        .done(function (json) {
-            addMarkers(map, json);
-        })
-        .fail(function (jqxhr, textStatus, error) {
-            console.log(error);
-        })
+        drawMap(map,param)
 
     })
 });

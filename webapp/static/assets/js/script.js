@@ -4,13 +4,13 @@
 $(document).ready(function ($) {
 
     $(".select2-select").each(function () {
-        var name=$(this).attr("name")
-        var input=$(this)
+        var name = $(this).attr("name")
+        var input = $(this)
         $.ajax({
             url: '/film/getSuggestion',
             method: 'get',
-            dataType:'json',
-            data:{'field':$(this).attr('name')},
+            dataType: 'json',
+            data: {'field': $(this).attr('name')},
             success: function (data) {
                 var items = data.items
                 input.select2({
@@ -20,7 +20,7 @@ $(document).ready(function ($) {
                     placeholder: 'ALL'
                 });
             },
-            error:function(){
+            error: function () {
                 input.select2({
                     minimumInputLength: 2,
                     allowClear: true,
@@ -69,6 +69,7 @@ $(document).ready(function ($) {
         $(where + ' a[href="' + activeTab + '"]').tab('show');
         transitionParent = $(this).attr('data-transition-parent');
     });
+
 
 
 
