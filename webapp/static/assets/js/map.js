@@ -139,8 +139,8 @@ function addMarkers(map, json) {
     var clusterStyles = [
         {
             url: '/static/assets/img/cluster.png',
-            height: 42,
-            width: 42
+            height: 32,
+            width: 32
         }
     ];
 
