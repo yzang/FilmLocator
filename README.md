@@ -19,9 +19,9 @@ http://ec2-54-175-160-14.compute-1.amazonaws.com
   - richmarker
   - markercluster
 - Backend
-  - SQLite
+  - SQLite3
 - Web Framework
-  - This web app is written in python using Django framework
+  - This web app is written in python using Django 1.9
 - Thrid party API
   - Google Map Javascript API
   - Google Map Places API
