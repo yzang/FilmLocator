@@ -15,7 +15,9 @@ $(document).ready(function ($) {
                 var items = data.items
                 input.select2({
                     minimumInputLength: 2,
-                    data: items
+                    data: items,
+                    allowClear: true,
+                    placeholder: 'ALL'
                 });
             }
         })
