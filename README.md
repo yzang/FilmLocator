@@ -11,6 +11,7 @@ http://ec2-54-175-160-14.compute-1.amazonaws.com
 - Frontend
   - HTML5+CSS
   - JQuery
+  - JQuery - UI
   - Bootstrap
   - NoUISlider
   - Select2
@@ -33,7 +34,13 @@ All the data has already been loaded into the database. If you want to reload th
 
 You might need to configure Apache2 or whatever web servere you prefer to host the website publicly.
 
-
+# Features
+1. Search: GET /film/search
+  - Default return a full list of films
+  - Allowed parameters: title, start_year, end_year, company, director, distributor, actors
+  - Curretly we're not able to filter by location. The location box is just used to find a position in the map. But this feature can be easily added.
+2. Autocomplete: GET /film/getSuggestion
+  - We used jquery autocompletion, so this api just generate a full list of all options and feed into autocompletion plugin
 
 # Test cases
 There are some test cases for the film searching service <a href="https://github.com/zym242/FilmLocator/blob/master/webapp/tests.py">here</a>.
