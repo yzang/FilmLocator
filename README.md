@@ -28,11 +28,13 @@ http://ec2-54-175-160-14.compute-1.amazonaws.com
   - Google Map Geocoding API
 
 # How to set up and run?
-To test and run locally, you can simply clone the repo and execute "python manage.py runserver".
+Install Django by <code>pip install Django==1.9.4</code>
+
+To test and run locally, you can simply clone the repo and execute "python manage.py runserver". 
+
+You might also want to configure Apache2 or other web servere to host the website publicly.
 
 All the data has already been loaded into the database. If you want to reload the data, you can execute the "load_data.py" under data_process folder.
-
-You might need to configure Apache2 or whatever web servere you prefer to host the website publicly.
 
 # Features
 1. Search: GET /film/search
