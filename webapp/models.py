@@ -17,3 +17,16 @@ class Film(models.Model):
     actors=models.ManyToManyField(Actor)
     latitude=models.FloatField()
     longitude=models.FloatField()
+
+    def to_dict(self):
+        item={}
+        item['title']=self.title
+        item['year']=self.year
+        item['fact']=self.fact
+        item['location']=self.location
+        item['company']=self.company
+        item['distributor']=self.distributor
+        item['director']=self.director
+        item['writer']=self.writer
+        item['longitude']=self.longitude
+        item['latitude']=self.latitude

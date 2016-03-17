@@ -21,7 +21,11 @@ def search_film(request):
         print filters
         try:
             films=Film.objects.filter(**filters)
-            response=json.dumps(films)
+            data=[]
+            for film in films:
+                item=film.to_dict()
+                data.append(item)
+            response=json.dumps(data)
         except:
             pass
     return HttpResponse(response)
