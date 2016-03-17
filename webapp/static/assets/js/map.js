@@ -198,10 +198,10 @@ function addMarkers(map, json) {
         }
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
-            map.setZoom(14);
+            map.setZoom(18);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(14);
+            map.setZoom(18);
         }
     });
 }
