@@ -29,4 +29,4 @@ def elastic_suggest(prefix, field):
     dataset = set()
     for hit in s.scan():
         dataset.add(hit.to_dict().get(field)[0])
-    return dataset
+    return list(dataset)

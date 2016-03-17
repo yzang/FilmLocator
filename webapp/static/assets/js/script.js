@@ -2,12 +2,12 @@
  * Created by Yiming on 3/15/2016.
  */
 $(document).ready(function ($) {
-function formatRepo (repo) {
-      return repo;
+function formatRepo (item) {
+      return item;
     }
 
-    function formatRepoSelection (repo) {
-      return repo.full_name || repo.text;
+    function formatRepoSelection (item) {
+      return item
     }
     $(".select2-select").select2({
         ajax: {
