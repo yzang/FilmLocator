@@ -6,6 +6,7 @@ from search import *
 
 
 # Create your views here.
+from webapp.forms import FilterForm
 from webapp.models import Film, Actor
 
 
@@ -14,12 +15,11 @@ def home(request):
 
 
 def search_film(request):
-    response=''
+    response='{}'
     if request.method=='GET':
-        params=request.GET
-        filters=params.dict()
-        print filters
+        form=FilterForm(request.GET)
         try:
+            filters=form.get_filter()
             films=Film.objects.filter(**filters)
             data=[]
             for film in films:
@@ -32,7 +32,7 @@ def search_film(request):
 
 
 def get_suggestion(request):
-    response = ''
+    response = '{}'
     if request.method=='GET' and 'field' in request.GET:
         field=request.GET['field']
         if field!='actors':

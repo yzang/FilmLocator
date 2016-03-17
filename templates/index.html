@@ -32,8 +32,8 @@
             <div class="submit-container">
                 <a href="#search-collapse" class="btn btn-default btn-sm show-filter" data-toggle="collapse"
                    aria-expanded="false" aria-controls="search-collapse">Search Filter</a>
-                <a class="submit-button"><i class="rotate fa fa-refresh" style="font-size: 20px;color:white"></i></a>
-                <a class="submit-button"><i class="fa fa-check" style="font-size: 20px;color:white"></i></a>
+                <a id="form-refresh" class="submit-button"><i class="rotate fa fa-refresh" style="font-size: 20px;color:white"></i></a>
+                <a id="form-submit" class="submit-button"><i class="fa fa-check" style="font-size: 20px;color:white"></i></a>
             </div>
         </div>
     </header>
@@ -41,7 +41,7 @@
     <div class="page-content">
         <div class="search collapse in" id="search-collapse">
             <div class="container">
-                <form class="main-search" role="form" method="post" action="#">
+                <form id="search-form" class="main-search" role="form" method="get" action="/film/search">
                     <!-- first row filter -->
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
@@ -58,8 +58,8 @@
                                 <div class="ui-slider" id="price-slider" data-step="1" data-value-min="1900"
                                      data-value-max="2020" data-value-type="number">
                                     <div class="values clearfix">
-                                        <input class="value-min" name="year-from" readonly>
-                                        <input class="value-max" name="year-to" readonly>
+                                        <input class="value-min" name="start_year" readonly>
+                                        <input class="value-max" name="end_year" readonly>
                                     </div>
                                     <div class="element"></div>
                                 </div>
