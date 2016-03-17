@@ -48,11 +48,12 @@ There are some test cases for the film searching service <a href="https://github
 Run the test cases by "python manage.py test"
 
 # Future work
-Currently, it's quite hard to ensure the geolocation in this web app is correct and accurate because some addresses are quite confusing and even google map api can not find the correct geolocation.
+1. Currently, it's quite hard to ensure the geolocation in this web app is correct and accurate because some addresses are quite confusing and even google map api can not find the correct geolocation.
 
-The current dataset is static and small, so we're able to use SQLite to do the filters and autocompletion. However, if the dataset grows extremely large, we might want to consider using elasticsearch to speed up the search funciontality and autocomletion.
+2. The current dataset is static and small, so we're able to use SQLite to do the filters and autocompletion. However, if the dataset grows extremely large, we might want to consider using elasticsearch to speed up the search funciontality and autocomletion.
 
-You may notice that it's still a bit slow loading all the data into Google Map. Due to time limit, I didn't find a nice way to improve it right now.
+3. You may notice that it's still a bit slow loading all the data into Google Map. Due to time limit, I didn't find a nice way to improve it right now.
 
+4. The website currently runs in debug mode. Change to production mode before we actually publish it.
 
 
