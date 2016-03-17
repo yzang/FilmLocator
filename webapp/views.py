@@ -1,5 +1,5 @@
 import json
-
+import sys
 from django.http import HttpResponse
 from django.shortcuts import render
 from search import *
@@ -17,17 +17,19 @@ def home(request):
 def search_film(request):
     response='{}'
     if request.method=='GET':
+	print 'get request'
         form=FilterForm(request.GET)
         try:
             filters=form.get_filter()
+	    print filters
             films=Film.objects.filter(**filters)
             data=[]
             for film in films:
                 item=film.to_dict()
                 data.append(item)
             response=json.dumps(data)
-        except:
-            pass
+	except Exception,e: 
+	    print str(e)
     return HttpResponse(response)
 
 
