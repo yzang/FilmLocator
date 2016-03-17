@@ -14,6 +14,9 @@ http://ec2-54-175-160-14.compute-1.amazonaws.com
   - Bootstrap
   - NoUISlider
   - Select2
+  - Infobox
+  - richmarker
+  - markercluster
 - Backend
   - SQLite
 - Web Framework
