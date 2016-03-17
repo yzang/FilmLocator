@@ -7,7 +7,7 @@ $(document).ready(function ($) {
         var name=$(this).attr("name")
         var input=$(this)
         $.ajax({
-            url: '/getSuggestion',
+            url: '/film/getSuggestion',
             method: 'get',
             dataType:'json',
             data:{'field':$(this).attr('name')},
@@ -16,6 +16,13 @@ $(document).ready(function ($) {
                 input.select2({
                     minimumInputLength: 2,
                     data: items,
+                    allowClear: true,
+                    placeholder: 'ALL'
+                });
+            },
+            error:function(){
+                input.select2({
+                    minimumInputLength: 2,
                     allowClear: true,
                     placeholder: 'ALL'
                 });
