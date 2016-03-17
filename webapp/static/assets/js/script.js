@@ -2,42 +2,25 @@
  * Created by Yiming on 3/15/2016.
  */
 $(document).ready(function ($) {
-function formatRepo (item) {
-      return item;
-    }
 
-    function formatRepoSelection (item) {
-      return item
-    }
-    $(".select2-select").select2({
-        ajax: {
-            url: "/getSuggestion",
-            dataType: 'json',
-            delay: 300,
-            data: function (params) {
-                return {
-                    q: params.term, // search term
-                    f: $(this).attr("name")
-                };
-            },
-            processResults: function (data) {
-                // parse the results into the format expected by Select2
-                // since we are using custom formatting functions we do not need to
-                // alter the remote JSON data, except to indicate that infinite
-                // scrolling can be used
-                return {
-                    results: data.items,
-                };
-            },
-            cache: true
-        },
-        escapeMarkup: function (markup) {
-            return markup;
-        }, // let our custom formatter work
-        minimumInputLength: 2,
-        templateResult: formatRepo, // omitted for brevity, see the source of this page
-        templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
-    });
+    $(".select2-select").each(function () {
+        var name=$(this).attr("name")
+        var input=$(this)
+        $.ajax({
+            url: '/getSuggestion',
+            method: 'get',
+            dataType:'json',
+            data:{'field':$(this).attr('name')},
+            success: function (data) {
+                var items = data.items
+                input.select2({
+                    minimumInputLength: 2,
+                    data: items
+                });
+            }
+        })
+    })
+
 
 //  No UI Slider ------------------------------------------
 
@@ -77,7 +60,6 @@ function formatRepo (item) {
         $(where + ' a[href="' + activeTab + '"]').tab('show');
         transitionParent = $(this).attr('data-transition-parent');
     });
-
 
 
 });
