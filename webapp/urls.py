@@ -18,5 +18,6 @@ from django.conf.urls import url
 from webapp import views
 urlpatterns = [
     url('^$',views.home,name='home'),
-    url('^getSuggestion',views.get_suggestion,name='getSuggestion')
+    url('^getSuggestion',views.get_suggestion,name='getSuggestion'),
+    url('^search',views.search_film,name='search')
 ]

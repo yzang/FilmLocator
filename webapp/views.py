@@ -13,7 +13,7 @@ def home(request):
     return render(request, 'index.html', {})
 
 
-def get_film(request):
+def search_film(request):
     response=''
     if request.method=='GET':
         params=request.GET
