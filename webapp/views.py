@@ -13,9 +13,22 @@ def home(request):
     return render(request, 'index.html', {})
 
 
+def get_film(request):
+    response=''
+    if request.method=='GET':
+        params=request.GET
+        filters=params.dict()
+        try:
+            films=Film.objects.filter(filters)
+            response=json.dumps(films)
+        except:
+            pass
+    return HttpResponse(response)
+
+
 def get_suggestion(request):
     response = ''
-    if request.method=='GET':
+    if request.method=='GET' and 'field' in request.GET:
         field=request.GET['field']
         if field!='actors':
             items=map(lambda x:x[field],Film.objects.values(field).distinct())
