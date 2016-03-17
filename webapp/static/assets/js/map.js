@@ -139,14 +139,15 @@ function addMarkers(map, json) {
     var clusterStyles = [
         {
             url: '/static/assets/img/cluster.png',
-            height: 32,
-            width: 32
+            height: 42,
+            width: 42
         }
     ];
 
     var markerCluster = new MarkerClusterer(map, newMarkers, {styles: clusterStyles, maxZoom: 19});
 
     // Dynamic loading markers and data from JSON
+/**
     google.maps.event.addListener(map, 'idle', function () {
         var visibleArray = [];
         for (var i = 0; i < json.length; i++) {
@@ -168,6 +169,23 @@ function addMarkers(map, json) {
                 newMarkers[i].setMap(null);
             }
         }
+   });
+**/
+  google.maps.event.addListener(map,'idle', function () {
+        var visibleArray = [];
+	console.log("idle event triggered")
+        for (var i = 0; i < json.length; i++) {
+            if (map.getBounds().contains(newMarkers[i].getPosition())) {
+		if (!newMarkers[i].content.className) {
+                            newMarkers[i].setMap(map);
+                            newMarkers[i].content.className += 'bounce-animation marker-loaded';
+                }
+            } else {
+                newMarkers[i].content.className = '';
+                newMarkers[i].setMap(null);
+            }
+        }
+	markerCluster.repaint()
     });
 
 
