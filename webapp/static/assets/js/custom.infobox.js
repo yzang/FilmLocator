@@ -1,6 +1,6 @@
 function drawInfobox(json, i){
     var title='';
-    var release='';
+    var year='';
     var location='';
     var company='';
     var distributor='';
@@ -9,7 +9,7 @@ function drawInfobox(json, i){
     var actors='';
 
     if( json[i].title )                { title=json[i].title }
-    if( json[i].release )              { release=json[i].release }
+    if( json[i].year )                  { year=json[i].year }
     if( json[i].location )             { location=json[i].location }
     if( json[i].company )              { company=json[i].company }
     if( json[i].distributor )          { distributor=json[i].distributor }
@@ -25,7 +25,7 @@ function drawInfobox(json, i){
                     '<dt>Title</dt>' +
                     '<dd>'+title+'</dd>' +
                     '<dt>Release Year</dt>' +
-                    '<dd>'+release+'</dd>' +
+                    '<dd>'+year+'</dd>' +
                     '<dt>Location</dt>' +
                     '<dd>'+location+'</dd>' +
                     '<dt>Production Company</dt>' +
