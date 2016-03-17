@@ -13,22 +13,24 @@ class FilterForm(forms.ModelForm):
 
     def get_filter(self):
         filters={}
-        if self.cleaned_data['title']:
-            filters['title']=self.cleaned_data['title']
-        if self.cleaned_data['year__gte']:
-            filters['year__gte']=self.cleaned_data['year__gte']
-        if self.cleaned_data['year__lte']:
-            filters['year__lte']=self.cleaned_data['year__lte']
-        if self.cleaned_data['location']:
-            filters['location']=self.cleaned_data['location']
-        if self.cleaned_data['company']:
-            filters['company']=self.cleaned_data['company']
-        if self.cleaned_data['distributor']:
-            filters['distributor']=self.cleaned_data['distributor']
-        if self.cleaned_data['director']:
-            filters['director']=self.cleaned_data['director']
-        if self.cleaned_data['writer']:
-            filters['writer']=self.cleaned_data['writer']
-        if self.cleaned_data['actors__name']:
-            filters['actors__name']=self.cleaned_data['actors__name']
+	print self.data
+        if self.data.get('title'):
+            filters['title']=self.data['title']
+        if self.data.get('start_year'):
+            filters['year__gte']=int(self.data['start_year'])
+        if self.data.get('end_year'):
+            filters['year__lte']=int(self.data['end_year'])
+        if self.data.get('location'):
+            filters['location']=self.data['location']
+        if self.data.get('company'):
+            filters['company']=self.data['company']
+        if self.data.get('distributor'):
+            filters['distributor']=self.data['distributor']
+        if self.data.get('director'):
+            filters['director']=self.data['director']
+        if self.data.get('writer'):
+            filters['writer']=self.data['writer']
+        if self.data.get('actors'):
+            filters['actors__name']=self.data['actors']
+	print filters
         return filters
