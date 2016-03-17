@@ -30,3 +30,8 @@ class Film(models.Model):
         item['writer']=self.writer
         item['longitude']=self.longitude
         item['latitude']=self.latitude
+        item['actors']=[]
+        actors=self.actors.all()
+        for actor in actors:
+            item['actors'].append(actor.name)
+        return item
