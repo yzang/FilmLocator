@@ -207,7 +207,7 @@ function addMarkers(map, json) {
 }
 
 
-function drawMap(map,param) {
+function drawMap(param) {
     spinner.spin(spinTarget)
     $.getJSON('/film/search', param)
         .done(function (json) {
@@ -262,7 +262,7 @@ $(document).ready(function ($) {
 
     $('#form-refresh').click(function () {
         $(".select2-select").select2("val","")
-        drawMap(map,{})
+        drawMap({})
     })
 });
 
