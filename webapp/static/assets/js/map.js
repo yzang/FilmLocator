@@ -1,6 +1,7 @@
 /**
  * Created by Yiming on 3/15/2016.
  */
+var transitionDelay=0.7
 function animateElement(parentElement){
     $(parentElement).addClass('idle');
     setTimeout(function() {

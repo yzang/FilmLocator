@@ -17,5 +17,6 @@ Including another URLconf
 from django.conf.urls import url
 from webapp import views
 urlpatterns = [
-    url('^$',views.home,name='home')
+    url('^$',views.home,name='home'),
+    url('^getSuggestion',views.get_suggestion,name='getSuggestion')
 ]

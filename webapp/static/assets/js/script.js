@@ -2,31 +2,31 @@
  * Created by Yiming on 3/15/2016.
  */
 $(document).ready(function ($) {
+function formatRepo (repo) {
+      return repo;
+    }
 
-
+    function formatRepoSelection (repo) {
+      return repo.full_name || repo.text;
+    }
     $(".select2-select").select2({
         ajax: {
-            url: "https://api.github.com/search/repositories",
+            url: "/getSuggestion",
             dataType: 'json',
-            delay: 250,
+            delay: 300,
             data: function (params) {
                 return {
                     q: params.term, // search term
-                    page: params.page
+                    f: $(this).attr("name")
                 };
             },
-            processResults: function (data, params) {
+            processResults: function (data) {
                 // parse the results into the format expected by Select2
                 // since we are using custom formatting functions we do not need to
                 // alter the remote JSON data, except to indicate that infinite
                 // scrolling can be used
-                params.page = params.page || 1;
-
                 return {
                     results: data.items,
-                    pagination: {
-                        more: (params.page * 30) < data.total_count
-                    }
                 };
             },
             cache: true
@@ -34,7 +34,9 @@ $(document).ready(function ($) {
         escapeMarkup: function (markup) {
             return markup;
         }, // let our custom formatter work
-        minimumInputLength: 1
+        minimumInputLength: 2,
+        templateResult: formatRepo, // omitted for brevity, see the source of this page
+        templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
     });
 
 //  No UI Slider ------------------------------------------
