@@ -18,8 +18,9 @@ def search_film(request):
     if request.method=='GET':
         params=request.GET
         filters=params.dict()
+        print filters
         try:
-            films=Film.objects.filter(filters)
+            films=Film.objects.filter(**filters)
             response=json.dumps(films)
         except:
             pass
