@@ -188,9 +188,7 @@ function addMarkers(map, json) {
         spinner.stop()
     });
 
-
     // Autocomplete address ----------------------------------------------------------------------------------------
-
     var input = document.getElementById('location');
     var autocomplete = new google.maps.places.Autocomplete(input, {
         types: ["geocode"]
@@ -207,18 +205,6 @@ function addMarkers(map, json) {
         } else {
             map.setCenter(place.geometry.location);
             map.setZoom(14);
-        }
-
-        //marker.setPosition(place.geometry.location);
-        //marker.setVisible(true);
-
-        var address = '';
-        if (place.address_components) {
-            address = [
-                (place.address_components[0] && place.address_components[0].short_name || ''),
-                (place.address_components[1] && place.address_components[1].short_name || ''),
-                (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
         }
     });
 }
@@ -272,7 +258,6 @@ $(document).ready(function ($) {
 
     $('#form-submit').click(function () {
         var param = $('#search-form').serialize()
-        console.log(param)
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
             center: center,
@@ -285,7 +270,22 @@ $(document).ready(function ($) {
             }
         });
         drawMap(map,param)
+    })
 
+    $('#form-refresh').click(function () {
+        $(".select2-select").select2("val","")
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: center,
+            disableDefaultUI: false,
+            panControl: true,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.LARGE,
+                position: google.maps.ControlPosition.RIGHT_TOP
+            }
+        });
+        drawMap(map,{})
     })
 });
 

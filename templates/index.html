@@ -146,12 +146,22 @@
 <script type="text/javascript" src="/static/assets/js/jquery.nouislider.all.min.js"></script>
 <script type="text/javascript" src="/static/assets/js/select2.min.js"></script>
 <script type="text/javascript" src="/static/assets/js/spinner.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
-<script type="text/javascript" src="/static/assets/js/richmarker-compiled.js"></script>
-<script type="text/javascript" src="/static/assets/js/custom.infobox.js"></script>
-<script type="text/javascript" src="/static/assets/js/infobox.js"></script>
-<script type="text/javascript" src="/static/assets/js/markerclusterer.js"></script>
-<script type="text/javascript" src="/static/assets/js/script.js"></script>
-<script type="text/javascript" src="/static/assets/js/map.js"></script>
+<script>
+    function initMap(){
+        $.getScript("/static/assets/js/richmarker-compiled.js")
+        $.getScript("/static/assets/js/custom.infobox.js")
+        $.getScript("/static/assets/js/infobox.js")
+        $.getScript("/static/assets/js/markerclusterer.js")
+        $.getScript("/static/assets/js/script.js")
+        $.getScript("/static/assets/js/map.js")
+    }
+</script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&callback=initMap" async defer></script>
+{#<script type="text/javascript" src="/static/assets/js/richmarker-compiled.js"></script>#}
+{#<script type="text/javascript" src="/static/assets/js/custom.infobox.js"></script>#}
+{#<script type="text/javascript" src="/static/assets/js/infobox.js"></script>#}
+{#<script type="text/javascript" src="/static/assets/js/markerclusterer.js"></script>#}
+{#<script type="text/javascript" src="/static/assets/js/script.js"></script>#}
+{#<script type="text/javascript" src="/static/assets/js/map.js"></script>#}
 </body>
 </html>
