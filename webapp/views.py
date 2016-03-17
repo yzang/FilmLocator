@@ -20,7 +20,7 @@ def get_suggestion(request):
         if field!='actors':
             items=map(lambda x:x[field],Film.objects.values(field).distinct())
         else:
-            items=map(lambda x:x[field],Actor.objects.values(field).distinct())
+            items=map(lambda x:x['name'],Actor.objects.values('name').distinct())
         data={}
         data['items']=items
         response=json.dumps(data)
