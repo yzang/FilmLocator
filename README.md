@@ -4,8 +4,8 @@ A simple web application that shows all films that are filmed in San Francisco. 
 # Data source
 https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am
 
-# Link to the demo
-http://ec2-54-175-160-14.compute-1.amazonaws.com
+# Demo
+<img src="https://github.com/zym242/FilmLocator/blob/master/demo.png"></img>
 
 # Technologies
 - Frontend
